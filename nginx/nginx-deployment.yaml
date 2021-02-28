@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx     # 須跟 template 的 labels 一致才會生效
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: default # 服務賬戶的名字是default
+      containers:
+        - image: nginx:1.13
+          name: nginx-container
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsUser: 0       # 設置以 ROOT 用戶運行容器
+            privileged: true   # 擁有特權
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            # 將名為 nginx-pv 的 volume 掛載到指定目錄
+            - name: nginx-pv              # 將 nginx-pvc 掛載到 /etc/nginx/conf.d 下
+              mountPath: /etc/nginx/conf.d
+      volumes:
+        # 宣告一個 volume 物件
+        - name: nginx-pv
+          configMap:
+            name: nginx-conf
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+            # 指定到宿主主機路徑
+            #          hostPath:
+            #            path: /home/meow/volume/jenkins
+          # 對應到 PersistentVolumeClaim
+#          persistentVolumeClaim:
+#            claimName: jenkins-pvc

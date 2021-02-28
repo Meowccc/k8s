@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    app: jenkins       # 對應到 spec 的 matchLabels && service 的 selector
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins     # 須跟 template 的 labels 一致才會生效
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: default # 服務賬戶的名字是default
+      containers:
+        - image: jenkinsci/blueocean
+          name: jenkins-container
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsUser: 0       # 設置以 ROOT 用戶運行容器
+            privileged: true   # 擁有特權
+          ports:
+            - containerPort: 8080
+            - containerPort: 50000
+          volumeMounts:
+            # 將名為 jenkins-pv 的 volume 掛載到指定目錄
+            - name: jenkins-pv              # 將 jenkins-pvc 掛載到 /var/jenkins_home 下
+              mountPath: /var/jenkins_home
+      volumes:
+        # 宣告一個 volume 物件
+        - name: jenkins-pv
+          # 指定到宿主主機路徑
+          hostPath:
+            path: /tmp
+            # 對應到 PersistentVolumeClaim
+#          persistentVolumeClaim:
+#            claimName: jenkins-pvc
