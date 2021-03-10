@@ -1,7 +1,9 @@
-#Oauth2 - Microsoft (Client Login)
+# Oauth2 - Microsoft (Client Login)
 
 
-##流程
+## 流程
+
+--- 
 
 1. [取得授權碼](#no.1)
 2. [取得AccessToken](#no.2)
@@ -43,7 +45,7 @@
 >```
 >
 >
-> ####回傳結果   (redirect uri)
+> #### 回傳結果   (redirect uri)
 > 
 >```http request
 >https://tw.yahoo.com/?
@@ -57,7 +59,7 @@
 > 
 > 
 > 
-> ###<span id = "no.2">取得AccessToken</span>
+> ### <span id = "no.2">取得AccessToken</span>
 >```http request
 >-X POST
 >-H 'Content-Type: multipart/form-data'
