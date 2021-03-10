@@ -62,13 +62,13 @@
 >-X POST
 >-H 'Content-Type: multipart/form-data'
 >-d '{
->    "client_id"={{client_id}}
->    "scope"={{scope}}
+>    "client_id":{{client_id}}
+>    "scope":{{scope}}
 >    "code":{{code}},
->    "redirect_uri"={{redirect_uri}}
->    "grant_type"="authorization_code"
->    "code_verifier"={{code_verifier}}
->    "client_secret"={{client_secret}}
+>    "redirect_uri":{{redirect_uri}}
+>    "grant_type":"authorization_code"
+>    "code_verifier":{{code_verifier}}
+>    "client_secret":{{client_secret}}
 >}'
 >https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
 >```
@@ -88,13 +88,13 @@
 >-X POST
 >-H 'Content-Type: multipart/form-data'
 >-d '{
->    "client_id"="736d6d06-29ca-464b-a44f-7418df4b9b7a"
->    "scope"="https://graph.microsoft.com/Mail.Read"
+>    "client_id":"736d6d06-29ca-464b-a44f-7418df4b9b7a"
+>    "scope":"https://graph.microsoft.com/Mail.Read"
 >    "code":{{code}},
->    "redirect_uri"="https://tw.yahoo.com"
->    "grant_type"="authorization_code"
->    "code_verifier"="kw4NkFwmeNdygVX84Rm89D4xbOjj3wz2HgDLZuNuoJg"
->    "client_secret"="OltFIJ50LQ3UL15-_mPE.WjdM0tSdiOO--"
+>    "redirect_uri":"https://tw.yahoo.com"
+>    "grant_type":"authorization_code"
+>    "code_verifier":"kw4NkFwmeNdygVX84Rm89D4xbOjj3wz2HgDLZuNuoJg"
+>    "client_secret":"OltFIJ50LQ3UL15-_mPE.WjdM0tSdiOO--"
 >}'
 >https://login.microsoftonline.com/b50943ec-d112-4dc3-9260-815ee50a29c1/oauth2/v2.0/token
 >```
