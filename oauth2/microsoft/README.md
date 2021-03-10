@@ -8,7 +8,7 @@
 3. [混合式](#no.3)
 
 
-> ###<span id = "no.1">取得授權碼</span>
+> ###<span id = "no.1">1. 取得授權碼</span>
 >```http request
 >-X GET
 >https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/authorize?
@@ -54,7 +54,7 @@
 > 
 > 
 > 
-> ### <span id = "no.2">取得AccessToken</span>
+> ### <span id = "no.2">2. 取得AccessToken</span>
 >```http request
 >-X POST
 >-H 'Content-Type: multipart/form-data'
@@ -69,15 +69,16 @@
 >}'
 >https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
 >```
-> * tenant
-> * client_id
-> * scope
-> * code : <span id = "code">使用第一段取得授權碼的 code</span>
-> * redirect_uri 轉跳的路徑
-> * code_verifier
-> * client_secret
-> 
-> 
+>
+> Parameter     | Explain
+> --------------|-----
+> tenant | Token Type
+> client_id |  取得範圍
+> scope | 過期時間
+> code | <span id = "code">使用第一段取得授權碼的 code</span>
+> redirect_uri | 轉跳的路徑
+> code_verifier | 更新令牌
+> client_secret | JWT Token 
 > 
 > #### Example:
 >```http request
@@ -108,19 +109,21 @@
 >    "id_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiI3MzZkNmQwNi0yOWNhLTQ2NGItYTQ0Zi03NDE4ZGY0YjliN2EiLCJpc3MiOiJodHRwczovL2xvZ2luLm1pY3Jvc29mdG9ubGluZS5jb20vYjUwOTQzZWMtZDExMi00ZGMzLTkyNjAtODE1ZWU1MGEyOWMxL3YyLjAiLCJpYXQiOjE2MTUzNTgzNDgsIm5iZiI6MTYxNTM1ODM0OCwiZXhwIjoxNjE1MzYyMjQ4LCJhaW8iOiJBV1FBbS84VEFBQUFiZ0prTWlKUjhQZHNmTzFHUFBFb3NBMFVLRFZNdzllZXU4SVdUaCs0S1d1NlVwdXhMZlVJS204ZW5qOTFCc2dPamM3UHB5Tmp1bFZLazV0OVFVYWwvS3RCUmUzdkZyTHVJbW1zK3Y2QngrclZZc0tuYldqNk93T1RGRlJPQjExSiIsImVtYWlsIjoiZDEwMzE5MTE1QGdtYWlsLmNvbSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzkxODgwNDBkLTZjNjctNGM1Yi1iMTEyLTM2YTMwNGI2NmRhZC8iLCJyaCI6IjAuQUFBQTdFTUp0UkxSdzAyU1lJRmU1UW9wd1FadGJYUEtLVXRHcEU5MEdOOUxtM3BLQUo0LiIsInN1YiI6IlpRd2xNNC01N3JjYkxwZ0haQUlkTXdOaUpxUEpBc04tcWtUbmRJWDFzREUiLCJ0aWQiOiJiNTA5NDNlYy1kMTEyLTRkYzMtOTI2MC04MTVlZTUwYTI5YzEiLCJ1dGkiOiJYN3oxeXJXUVowYVBIbEJ2blA4UUFBIiwidmVyIjoiMi4wIn0.A0gxaM4PI3DOOcRp0YQQYrKdI0Q_PE38UNemluRfjyMRP7mEP-Fz7SsHHFVYMCy7cYl345tvoh9sLw4-MOY5J-u5_wXDvpTz7Y8LdG25ry55CE_2A8kcp7UvXsTfDMuAQYeRwxQvmqdSXTpgqt_DI_TVcdEx2TNSWJ0ZkPbFZWgu-kCpsgxSv-kLu2po_aC-aKBGg5dSlE5NV2Ax0eWbzeBVFJAkuunDN8R9PRhxw1Y3boByMmmjTdThEmp8V1R_4hADcLN0IVoRhpTkNMu_KVwG0lKwHE1TiFPWD1RcajdfGzaXv7dgaq1YzYty7qm6mdzFOi6PAbn0hjWzIocTZw"
 >}
 >```
-> * token_type: Token Type
-> * scope : 取得範圍
-> * expires_in : 過期時間
-> * ext_expires_in : 過期時間
-> * access_token : 訪問令牌
-> * refresh_token : 更新令牌
-> * id_token : JWT Token
 > 
+> Parameter     | Explain  
+> --------------|-----
+> token_type | Token Type
+> scope |  取得範圍
+> expires_in | 過期時間
+> ext_expires_in | 過期時間
+> access_token | 訪問令牌
+> refresh_token | 更新令牌
+> id_token | JWT Token
 > 
 > ---
 > 
 > 
-> ### <span id = "no.3">混合式</span>
+> ### <span id = "no.3">3. 混合式</span>
 >
 > ```http request
 >-X GET
@@ -135,15 +138,19 @@
 >    &code_challenge={{code_challenge}}
 >    &code_challenge_method=S256
 > ```
-> * client_id : 用戶端識別碼
-> * response_type : 需要回傳code 或是 id_token
-> * redirect_uri : 轉跳的路徑
-> * response_mode : 
-> * scope : 要求的範圍
-> * state :
-> * nonce : 
-> * code_challenge : 
-> * code_challenge_method : 
+> 
+> Parameter     | Explain  
+> --------------|-----
+> client_id | 用戶端識別碼
+> response_type |  需要回傳code 或是 id_token
+> redirect_uri | 轉跳的路徑
+> response_mode |
+> scope | 要求的範圍
+> state |
+> nonce |
+> code_challenge |
+> code_challenge_method |
+> 
 > 
 > #### Example
 > ```http request
@@ -171,9 +178,17 @@
 > * code : [取得AccessToken的code](#code)
 > * id_token : (JWT Token)
 > * state : 
-> * session_state : 
-
-
+> * session_state :
+> 
+> Parameter     | Explain  
+> --------------|-----
+> code | [取得AccessToken的code](#code)
+> id_token |  (JWT Token)
+> state | 03:30 
+> session_state |
+> 
+> 
+> 
 ## 工具
 - [Parse JWT](https://jwt.io/)
 - [Generate PKCE](https://tonyxu-io.github.io/pkce-generator/)
