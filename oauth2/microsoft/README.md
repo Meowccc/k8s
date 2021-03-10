@@ -19,12 +19,15 @@
 >    &scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
 >    &state={{stage}}
 >```
-> * tenant 租戶識別碼
-> * client_id 用戶端識別碼
-> * response_type 回傳的內容
-> * redirect_uri 轉跳路徑
-> * response_mode 
-> * state
+>
+> Parameter     | Explain
+> --------------|-----
+> tenant | 租戶識別碼
+> client_id |  用戶端識別碼
+> response_type | 回傳的內容
+> redirect_uri | 轉跳路徑
+> response_mode | 
+> state | 
 > 
 > 
 > #### Example:
@@ -72,9 +75,9 @@
 >
 > Parameter     | Explain
 > --------------|-----
-> tenant | Token Type
-> client_id |  取得範圍
-> scope | 過期時間
+> tenant | 租戶識別碼
+> client_id |  用戶端識別碼
+> scope | 取得範圍
 > code | <span id = "code">使用第一段取得授權碼的 code</span>
 > redirect_uri | 轉跳的路徑
 > code_verifier | 更新令牌
