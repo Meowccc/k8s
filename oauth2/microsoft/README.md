@@ -28,7 +28,7 @@
 >    &scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fmail.read
 >    &state={{stage}}
 >```
-> ###回傳結果   (轉跳uri)
+> ###回傳結果   (redirect uri)
 > 
 >```http request
 >https://tw.yahoo.com/?
@@ -86,7 +86,7 @@
 
 - [What's PKCE](https://waynechu.cc/posts/298-what-is-pkce-proof-key-for-code-exchange)
 - [OAuth2.0 PKCE](https://tonyxu.io/zh/posts/2018/oauth2-pkce-flow/)
-- [OAuth3.0 Authorization Code](https://blog.yorkxin.org/posts/oauth2-4-1-auth-code-grant-flow.html)
+- [OAuth2.0 Authorization Code](https://blog.yorkxin.org/posts/oauth2-4-1-auth-code-grant-flow.html)
 
 ## 聯絡作者
 
